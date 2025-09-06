@@ -1,0 +1,12 @@
+set default-bg "#22242D"
+set recolor "false"
+set recolor-darkcolor "#F0F0F0"
+set recolor-lightcolor "#1d1f21"
+
+
+unmap d
+map d set recolor "true"
+unmap t
+map t toggle_statusbar
+set selection-clipboard clipboard
+set font "JetBrains Mono Regular 10"
