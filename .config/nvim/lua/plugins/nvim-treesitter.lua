@@ -1,0 +1,32 @@
+-- ~/.config/nvim/lua/plugins/nvim-treesitter.lua
+return {
+--  {
+--    "nvim-treesitter/nvim-treesitter",
+--    branch = 'master',
+--    lazy = false,
+--    build = ":TSUpdate"
+--  }
+}
+--return {
+--    "nvim-treesitter/nvim-treesitter",
+--    run = ":TSUpdate",
+--    config = function ()
+--        ---@diagnostic disable-next-line: missing-fields
+--        require('nvim-treesitter.configs').setup {
+--            auto_install = false,
+--            ensure_installed = {
+--                'python',
+--            --    'markdown',
+--                'lua',
+--                'vim',
+--                'bash',
+--                'rust',
+--                'typst',
+--            },
+--            highlight = {
+--                enable = true,
+--                additional_vim_regex_highlighting = false,
+--            },
+--        }
+--    end
+--}

@@ -1,0 +1,35 @@
+@import "~/.config/rofi/launcher/launcher-style.rasi"
+
+// Configuración por defecto do grid.rasi
+// Fonte: https://github.com/fdw/rofimoji
+
+window {
+   width: 650px;
+ }
+
+textbox {
+  vertical-align:   0.5;
+  horizontal-align: 0.5;
+}
+
+listview {
+  columns:       9;
+  lines:         7;
+  cycle:         true;
+  dynamic:       true;
+  layout:        vertical;
+  flow:          horizontal;
+  reverse:       false;
+  fixed-height:  true;
+  fixed-columns: true;
+}
+
+element {
+  orientation: vertical;
+}
+
+element-text {
+  vertical-align:   0.5;
+  horizontal-align: 0.5;
+  font:            "FiraCode Nerd Font 20";
+}

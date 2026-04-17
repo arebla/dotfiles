@@ -1,0 +1,25 @@
+# File: ~/.config/zathura/zathurarc
+
+set default-bg "#22242D"
+
+set font "IBM Plex Sans Mono 9"
+
+# Recoloriación do documento (escoller cor do fondo e da letra)
+set recolor "false"
+set recolor-darkcolor "#F0F0F0"
+set recolor-lightcolor "#1d1f21"
+
+# Cor de fondo durante o renderizado
+set render-loading-bg "#F0F0F0"
+set render-loading "false"
+
+# Eliminar asignacións previas á tecla 'd' e mapearlle recolor
+unmap d
+map d set recolor "true"
+
+# Alternar barra de estado
+unmap t
+map t toggle_statusbar
+
+# Copiar selección ao portapapeis
+set selection-clipboard clipboard

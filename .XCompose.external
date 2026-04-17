@@ -1,0 +1,32 @@
+# Custom compose sequences
+<Multi_key> <n> <h> : "ñ"   # Compose n+h → ñ
+<Multi_key> <N> <H> : "Ñ"   # Compose N+H → Ñ
+<Multi_key> <Escape>  : "`"
+
+# Alacritty is not handling these properly
+# Acute accents
+<Multi_key> <apostrophe> <a> : "á"
+<Multi_key> <apostrophe> <e> : "é"
+<Multi_key> <apostrophe> <i> : "í"
+<Multi_key> <apostrophe> <o> : "ó"
+<Multi_key> <apostrophe> <u> : "ú"
+<Multi_key> <apostrophe> <A> : "Á"
+<Multi_key> <apostrophe> <E> : "É"
+<Multi_key> <apostrophe> <I> : "Í"
+<Multi_key> <apostrophe> <O> : "Ó"
+<Multi_key> <apostrophe> <U> : "Ú"
+
+# Umlauts (diaeresis)
+<Multi_key> <quotedbl> <a> : "ä"
+<Multi_key> <quotedbl> <e> : "ë"
+<Multi_key> <quotedbl> <i> : "ï"
+<Multi_key> <quotedbl> <o> : "ö"
+<Multi_key> <quotedbl> <u> : "ü"
+<Multi_key> <quotedbl> <A> : "Ä"
+<Multi_key> <quotedbl> <E> : "Ë"
+<Multi_key> <quotedbl> <I> : "Ï"
+<Multi_key> <quotedbl> <O> : "Ö"
+<Multi_key> <quotedbl> <U> : "Ü"
+
+<Multi_key> <question> <question> : "¿"
+<Multi_key> <exclam> <exclam> : "¡"

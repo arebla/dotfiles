@@ -1,0 +1,14 @@
+# Acción por defecto
+action = copy
+
+# Cambiar o tema e moverse na grella coas frechas
+selector-args = "-theme ~/.config/rofi/rofimoji.rasi -kb-row-left Left -kb-row-right Right -kb-move-char-back Control+b -kb-move-char-forward Control+f"
+
+# Só amosar os emojis, sen descrición
+hidden-descriptions = true
+
+# Amosar emojis por orde no ficheiro, non por frequencia
+no-frecency = true
+
+# Escoller emoji do prompt
+prompt = 🐢
