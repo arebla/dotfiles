@@ -1,6 +1,9 @@
 # ~/.bash_profile
 
-# Este ficheiro execútase unha soa vez ao iniciar sesión no sistema
+# Este ficheiro execútase unha soa vez ao iniciar sesión no sistema. A orde na
+# que se procuran as configuracións é «/etc/profile» (xeral), «~/.bash_profile»
+# (usuario), «~/.bash_login» (usuario) e «~/.profile» (usuario); cando se atopa
+# a primeira configuración de usuario termínase o proceso de busca.
 
 # Variables de contorna
 export GDK_USE_PORTAL=1
