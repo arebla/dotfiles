@@ -21,6 +21,8 @@ alias hist_ssh='journalctl -u sshd | tail -n 100'
 alias mnt='udisksctl mount -b' #  /dev/sdb1
 alias umnt='udisksctl unmount -b' # /dev/sdb1
 alias peli="xrandr --output HDMI-1 --mode 1920x1080 --same-as eDP-1"
+alias enriba="xrandr --output HDMI-1 --mode 1920x1080 --above eDP-1"
+alias dereita="xrandr --output HDMI-1 --auto --right-of eDP-1"
 alias audio="alsamixer"
 alias ipwhere="curl ipinfo.io"
 
@@ -28,20 +30,19 @@ alias mysql="/usr/bin/mariadb"
 # Facer que detecte kernels: https://forum.manjaro.org/t/vscode-python-jupyter-extension-select-kernel-does-not-find-anything/169225
 alias code="code --enable-proposed-api ms-toolsai.jupyter --enable-proposed-api ms-python.python"
 
-# Ditch programs
-#alias yeet='paru -Rcs'
+# Eliminar un paquete e as súas dependencias
+alias yeet='pacman -Rs'
 
 alias vconf="cd ~/.config/nvim/"
 alias bconf="nvim ~/.bashrc"
 alias i3conf="nvim ~/.config/i3/config"
-alias aconf="nvim ~/.config/alacritty/alacritty.yml"
-alias snippets="nvim ~/.config/nvim/UltiSnips/tex.snippets"
-alias typstpack="cd $HOME/.local/share/typst/packages/local/"
+alias kconf="nvim ~/.config/kitty/kitty.conf"
+alias snippets="cd ~/.config/nvim/lua/snippets/"
+alias typstpack="cd ~/.local/share/typst/packages/local/"
+alias bsc="cd ~/OneDrive/Física_USC-G1031V01/ && ls -a"
+alias msc="cd ~/OneDrive/MSc/ && ls -a"
 
 alias thm="source ~/.scripts/alacritty-toggle-theme.sh"
-alias bsc="cd ~/OneDrive/Física_USC-G1031V01/ && ls -a"
-alias msc="ranger ~/OneDrive/MSc/"
-
 
 # =======================
 # FUNCIÓNS ÚTILES
