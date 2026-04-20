@@ -140,6 +140,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+0 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+# =======================
+# MENÚS
+# =======================
+
 bindsym $mod+r mode "Δ"
 mode "Δ" {
         bindsym l resize shrink width 5 px or 5 ppt
@@ -187,6 +191,11 @@ mode "λ" {
         bindsym $mod+0 mode "default"
 }
 
+
+# =======================
+# BARRA DE ESTADO
+# =======================
+
 bar {
 	status_command i3status
 	position top
@@ -214,12 +223,8 @@ bar {
 }
 
 # Dual monitor config
-#exec --no-startup-id xrandr --output eDP-1 --auto --right-of HDMI-1 &
-# xrandr --output HDMI-1 --mode 1920x1080 --above eDP-1
-# xrandr --output HDMI-1 --mode 1920x1080 --same-as eDP-1 # Pelis
 #workspace 1 output eDP-1
 #workspace $ws2 output HDMI-1
-
 
 # Autostart applications
 exec --no-startup-id nitrogen --restore; sleep 1
@@ -233,6 +238,11 @@ exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 # exec --no-startup-id dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
+
+# =======================
+# XANELAS FLOTANTES
+# =======================
+
 for_window [floating] border none
 for_window [class="Thunar"] floating enable
 for_window [class="OneDriveGUI"] floating enable
@@ -240,9 +250,17 @@ for_window [class="firefox" title="Library"] floating enable
 for_window [class="^Anki$" title= "^Engadir$"] floating enable, mark anki_add
 for_window [title="Network Connections"] floating enable
 
+# Regras para o script de copiar LaTeX ao portapapeis
+for_window [class="LaTeX portapapeis"] floating enable
+for_window [class="LaTeX portapapeis"] resize set 900 200
+for_window [class="LaTeX portapapeis"] move position center, move down 250px
+
+bindsym $mod+p exec --no-startup-id ~/.scripts/tex_portapapeis.sh
+bindsym $mod+Shift+f exec --no-startup-id bash -c 'xclip -selection clipboard < ~/Documents/flashcards_mpt.md'
 
 # See https://github.com/jubnzv/anki-tray
 #bindsym $mod+p exec ~/.scripts/raise-anki.py && sleep 0.2 && i3-msg '[con_mark="anki_add"] move workspace current' && i3-msg '[con_mark="anki_add"] focus'
+
 
 # Gaps
 gaps inner 1
