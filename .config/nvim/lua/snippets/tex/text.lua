@@ -18,10 +18,10 @@ local in_mathzone = utils.in_mathzone
 
 return {
 
-s({trig="tt", dscr="Expands 'tt' into '\texttt{}'"},
+s({trig="tt", condition = in_mathzone, snippetType = "autosnippet"},
   fmta(
-    "\\texttt{<>}",
-    { i(1) }
+    "\\text{<>}",
+    { d(1, get_visual) }
   )),
 
 s({ trig = "hr", dscr="The hyperref package's href{}{} command (for url links)"},

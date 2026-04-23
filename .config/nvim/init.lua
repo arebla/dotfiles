@@ -40,7 +40,7 @@ vim.g.maplocalleader = ' '
 
 -- Map 'jk' to exit insert mode
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
--- Map 'ww' to save the file
+-- Map 'ññ' or ';;' to save the file
 vim.keymap.set('n', 'ññ', ':w<CR>', { noremap = true })
 vim.keymap.set('n', ';;', ':w<CR>', { noremap = true })
 
@@ -68,6 +68,9 @@ vim.keymap.set('n', '<leader>s', ':set spell!<CR>', { noremap = true, silent = t
 
 vim.keymap.set('n', '<leader>t', ':Trim<CR>', { noremap = true, silent = true })
 
+-- Treat all numbers as absolute values
+-- https://pawelgrzybek.com/vim-tip-more-intuitive-ctrl-a-adding-and-ctrl-x-subtracting/
+vim.o.nrformats = "unsigned"
 
 -------------
 -- Plugins --
