@@ -26,9 +26,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec brightnessctl s 5%+ && $refresh_py3status && ~/.config/dunst/scripts/brightness.sh
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%- && $refresh_py3status && ~/.config/dunst/scripts/brightness.sh
 
-bindsym --release Print exec "maim --select | tee ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png"
+bindsym --release Print exec "maim -u --select | tee ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png"
 #bindsym --release Print exec "maim --select | tee ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png | xclip -selection clipboard -t image/png && notify-send 'Screenshot' 'Area captured and saved to ~/Pictures/Screenshots' -i camera-photo"
-bindsym Ctrl+Print exec "maim ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S-FS.png)"
+bindsym Ctrl+Print exec "maim -u ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S-FS.png)"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
