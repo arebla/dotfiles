@@ -66,7 +66,7 @@ bindsym $mod+Shift+Right move right
 
 # Split orientation
 bindsym $mod+semicolon split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v
+bindsym $mod+v split v;exec notify-send 'tile vertically'
 #bindsym $mod+b split toggle
 
 # Toggle fullscreen mode for the focused container
@@ -278,3 +278,4 @@ client.background       #242424
 #client.focused          #4c566a #2e3440 #888888 #2e3440
 
 bindsym $mod+period exec rofimoji
+bindsym $mod+Ctrl+p exec rofipass -t kitty -e nvim
