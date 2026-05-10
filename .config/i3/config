@@ -199,7 +199,7 @@ mode "λ" {
 bar {
 	status_command i3status
 	position top
-    status_command py3status --config ~/.config/i3/i3status.conf --include ~/.config/i3/modules
+    status_command LC_TIME=gl_ES.UTF-8 py3status --config ~/.config/i3/i3status.conf --include ~/.config/i3/modules
 	workspace_min_width 50
 	padding 2px 8px 2px 2px
 	strip_workspace_numbers yes

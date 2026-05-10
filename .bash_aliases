@@ -8,9 +8,11 @@ alias ls="ls --color=auto"
 alias cp="cp -i"
 alias v="nvim"
 alias vim="nvim"
+alias cal="LC_TIME=gl_ES.UTF-8 cal"
 alias yayup="yay -Syu --aur"
 alias base="source ~/.base/bin/activate"
 alias venv="source venv/bin/activate"
+alias okular="detach_app okular"
 
 alias dot='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 
@@ -21,8 +23,8 @@ alias hist_ssh='journalctl -u sshd | tail -n 100'
 alias mnt='udisksctl mount -b' #  /dev/sdb1
 alias umnt='udisksctl unmount -b' # /dev/sdb1
 alias peli="xrandr --output HDMI-1 --mode 1920x1080 --same-as eDP-1"
-alias enriba="xrandr --output HDMI-1 --mode 1920x1080 --above eDP-1"
-alias dereita="xrandr --output HDMI-1 --auto --right-of eDP-1"
+alias enriba="xrandr --output HDMI-1 --mode 1920x1080 --above eDP-1 && nitrogen --restore"
+alias dereita="xrandr --output HDMI-1 --auto --right-of eDP-1 && nitrogen --restore"
 alias audio="alsamixer"
 alias ipwhere="curl ipinfo.io"
 
@@ -55,6 +57,7 @@ ex ()
     case "$1" in
       *.tar.bz2)   tar xjf "$1"    ;;
       *.tar.gz)    tar xzf "$1"    ;;
+      *.tar.xz)    tar xvf "$1"    ;;
       *.bz2)       bunzip2 "$1"    ;;
       *.rar)       unrar x "$1"    ;;
       *.gz)        gunzip "$1"     ;;
@@ -91,13 +94,13 @@ ex ()
 
 # Abrir cadernos de Jupyter en conexións remotas
 jpt(){
-    conda activate
+    source venv/bin/activate
     jupyter notebook --no-browser --port=$1
 }
 
 # Pequena función para sacar o sampling rate dos ficheiros de audio
 spectrogram(){
-    # En caso de que a entrada sexa dada como unha ruta
+    # En caso de que a entrada sexa dada coma unha ruta
     filename=$(basename "$1")
     # Pasar todo a minúsculas
     clean_name="${filename,,}"
@@ -113,4 +116,11 @@ spectrogram(){
     #               sed 's/\.[^.]*$//')
 
     ffmpeg -i "$1" -lavfi showspectrumpic=s=1024x512:legend=1 "spec_${output_name}.png"
+}
+
+# Desprender procesos do terminal de xeito que, ao pechalo, a aplicación siga en execución
+detach_app() {
+    nohup "$@" > /dev/null 2>&1 &
+    # Ao executar, imprime na pantalla o número do traballo e o PID, para
+    # evitar isto hai que meter o comando «nohup ...» entre parénteses.
 }
