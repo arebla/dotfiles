@@ -31,6 +31,7 @@ alias ipwhere="curl ipinfo.io"
 alias mysql="/usr/bin/mariadb"
 # Facer que detecte kernels: https://forum.manjaro.org/t/vscode-python-jupyter-extension-select-kernel-does-not-find-anything/169225
 alias code="code --enable-proposed-api ms-toolsai.jupyter --enable-proposed-api ms-python.python"
+alias flush="sudo sync; echo 3 | sudo tee /proc/sys/vm/drop_caches"
 
 # Eliminar un paquete e as súas dependencias
 alias yeet='pacman -Rs'
