@@ -34,7 +34,7 @@ bindsym Ctrl+Print exec "maim -u ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S-FS
 floating_modifier $mod
 
 # Start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -89,6 +89,8 @@ bindsym $mod+space focus mode_toggle
 # focus the child container
 #bindsym $mod+d focus child
 
+set $edp eDP-1
+set $hdmi HDMI-1
 
 set $ws1 "1:I"
 set $ws2 "2:II"
@@ -99,6 +101,15 @@ set $ws6 "6:VI"
 set $ws7 "7:VII"
 set $ws8 "8:τ"
 
+workspace $ws1 output $edp
+workspace $ws2 output $edp
+workspace $ws3 output $edp
+workspace $ws4 output $edp
+workspace $ws5 output $hdmi
+workspace $ws6 output $hdmi
+workspace $ws7 output $hdmi
+workspace $ws8 output $hdmi
+
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -107,15 +118,6 @@ bindsym $mod+w workspace $ws5
 bindsym $mod+e workspace $ws6
 bindsym $mod+a workspace $ws7
 bindsym $mod+s workspace $ws8
-
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
 
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
@@ -134,10 +136,13 @@ bindsym $mod+minus scratchpad show
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5# reload the configuration file
+# assign [class="Skype"] $ws5
 
-bindsym $mod+Shift+c reload
+# Como non hai exec_always, «restart» é equivalente a «reload» pero con algo
+# máis de overhead. Se nalgún momento se engade exec_always o restart producirá
+# isntancias duplicadas.
 bindsym $mod+Shift+r restart
+#bindsym $mod+Shift+c reload
 bindsym $mod+Shift+0 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # =======================
