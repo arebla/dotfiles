@@ -1,0 +1,6 @@
+# ~/.config/feh/themes
+
+# Argumentos:
+# - O zoom aumentará ou diminuirá nun 5% con cada paso
+# - Desactiva os mapeos de botóns do rato predeterminados
+feh --zoom-step 5 --buttons 0

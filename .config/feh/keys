@@ -1,0 +1,15 @@
+# ~/.config/feh/keys
+
+# Navegación: cambiar imaxes usando «RePág»/«AvPág» ou as teclas «u»/«i»
+next_img Next i
+prev_img Prior u
+
+# Moverse nunha imaxe con zoom usando as teclas de frechas e hjkl
+scroll_left Left h
+scroll_right Right l
+scroll_up Up k
+scroll_down Down j
+
+# Control de Zoom: achegarse co «+» e «.» e afastarse co «-»
+zoom_in plus KP_Add period
+zoom_out minus KP_Subtract

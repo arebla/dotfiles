@@ -1,0 +1,4 @@
+# ~/.config/feh/buttons
+
+zoom_in 4       # Incrementa o zoom ao facer scroll up
+zoom_out 5      # Reduce o zoom ao facer scroll down
