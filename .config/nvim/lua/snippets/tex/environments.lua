@@ -40,6 +40,9 @@ s({ name = "item", trig = "item", condition = line_begin },
         { i(1) },
         { delimiters = "<>" }
       )),
+
+s({ trig = "bul" }, { t("\\item"),}),
+
 --s({ trig='fig', condition = line_begin},
 --  fmta(
 --    [[

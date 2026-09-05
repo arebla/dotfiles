@@ -173,6 +173,7 @@ s({ trig = "dot", snippetType = "autosnippet", condition = in_mathzone }, { t("\
 s({ trig = "oplus", snippetType = "autosnippet", condition = in_mathzone }, { t("\\oplus") }),
 s({ trig = "odot", snippetType = "autosnippet", condition = in_mathzone }, { t("\\odot") }),
 s({ trig = "otimes", snippetType = "autosnippet", condition = in_mathzone }, { t("\\otimes") }),
+s({ trig = "propto", snippetType = "autosnippet", condition = in_mathzone }, { t("\\propto") }),
 s({ trig = "!=", snippetType = "autosnippet", condition = in_mathzone }, { t("\\neq") }),
 s({ trig = ">>", snippetType = "autosnippet", condition = in_mathzone }, { t("\\gg") }),
 s({ trig = "<<", snippetType = "autosnippet", condition = in_mathzone }, { t("\\ll") }),
@@ -208,6 +209,7 @@ s({ trig = "ln", snippetType = "autosnippet", condition = in_mathzone }, { t("\\
 s({ trig = "quad", snippetType = "autosnippet", condition = in_mathzone }, { t("\\quad") }),
 s({ trig = "qquad", snippetType = "autosnippet", condition = in_mathzone }, { t("\\qquad") }),
 s({ trig = "empty", snippetType = "autosnippet", condition = in_mathzone }, { t("\\emptyset") }),
+
 
 -- TRIGONOMETRY
 
@@ -306,19 +308,19 @@ s({trig = "([%w%)%]%}|])__", wordTrig = false, regTrig = true, snippetType = "au
   { condition = in_mathzone }),
 
 -- SUBSCRIPT con índices
-s({ trig = "([%w%)%]%}|])_([ijknmtvd])", wordTrig = false, desc = "subscript", regTrig = true, snippetType = "autosnippet", },
-  fmta("<>_{<> <>}<>", {
-    f(function(_, snip)
-      return snip.captures[1]
-    end),
-    f(function(_, snip)
-      return snip.captures[2]
-    end),
-    i(1),
-    i(0),
-  }),
-  { condition = in_mathzone }
-),
+-- s({ trig = "([%w%)%]%}|])_([ijknmtvd])", wordTrig = false, desc = "subscript", regTrig = true, snippetType = "autosnippet", },
+--   fmta("<>_{<> <>}<>", {
+--     f(function(_, snip)
+--       return snip.captures[1]
+--     end),
+--     f(function(_, snip)
+--       return snip.captures[2]
+--     end),
+--     i(1),
+--     i(0),
+--   }),
+--   { condition = in_mathzone }
+-- ),
 
   -- SUBSCRIPT con números
   s({ trig = "([%a])(%d+)", wordTrig = false, regTrig = true },
@@ -375,21 +377,21 @@ s({ trig = "inv", snippetType = "autosnippet", wordTrig = false }, t("^{-1}"), {
   --- Accents - hat
   s({ trig = "hat", wordTrig = false, snippetType = "autosnippet" },
     fmta([[\hat{<>}]], {
-      i(1),
+      d(1, get_visual),
     }),
     { condition = in_mathzone }
   ),
 
   s({ trig = "bar", wordTrig = false, snippetType = "autosnippet" },
     fmta([[\overline{<>}]], {
-      i(1),
+      d(1, get_visual),
     }),
     { condition = in_mathzone }
   ),
 
   s({ trig = "tild", wordTrig = false, snippetType = "autosnippet" },
     fmta([[\widetilde{<>}]], {
-      i(1),
+      d(1, get_visual),
     }),
     { condition = in_mathzone }
   ),

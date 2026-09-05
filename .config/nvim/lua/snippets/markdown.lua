@@ -54,4 +54,26 @@ return {
     s({trig = "h3", condition = line_begin },
       { t("### "), }
       ),
+    s({trig = "fmatter" },
+      fmta(
+          [[
+            ---
+            type: book
+            title: "<>"
+            author: ""
+            year:
+            pages:
+            started: xxxx-xx-xx
+            finished: xxxx-xx-xx
+            language: ""
+            status: finished
+            genre:
+              - nonfiction
+              - poetry
+            ---
+            <>
+          ]],
+          { i(1), i(0) }
+      )),
+
 }

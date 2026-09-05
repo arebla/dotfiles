@@ -46,7 +46,13 @@ s({trig = "([^%a])fr", regTrig = true, wordTrig = true, condition = in_mathzone,
   fmta(
     [[<>frac(<>, <>)]],
     { f( function(_, snip) return snip.captures[1] end ),
-      i(1), i(2) }
+      d(1, get_visual), i(2) }
+  )),
+
+s({trig = "sq", regTrig = true, wordTrig = false, condition = in_mathzone, snippetType = "autosnippet"},
+  fmta(
+    [[sqrt(<>)]],
+    { d(1, get_visual) }
   )),
 
 --s({trig = "([^%a])sum", wordTrig = false, regTrig = true, condition = in_mathzone, snippetType = "autosnippet" },
@@ -70,6 +76,7 @@ s({ trig = "sum", snippetType = "autosnippet", wordTrig = false, regTrig = true,
             }) }
     )),
 
+-- SUBSCRIPT
 s({
     trig = "([%w%)%]%}|])jj",
     desc = "Subscript(no ambiguity)",
@@ -133,6 +140,7 @@ s(
     { condition = in_mathzone }
   ),
 
+-- Superscript
   s(
     { trig = "([%w%)%]%}|])kk", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
     fmta("<>^(<>)", {
@@ -191,6 +199,7 @@ s(
     }),
     { condition = in_mathzone }
   ),
+
   -- DAGGER
   s({ trig = "([%w%)%]%}])dagger", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
     fmta([[<>^(dagger)<>]], {
@@ -222,7 +231,6 @@ s(
   s({ trig = "neq", snippetType = "autosnippet" }, t("!="), { condition = in_mathzone }),
   s({ trig = "leq", snippetType = "autosnippet" }, t("<="), { condition = in_mathzone }),
   s({ trig = "geq", snippetType = "autosnippet" }, t(">="), { condition = in_mathzone }),
-
   s({ trig = "to ", snippetType = "autosnippet" }, t("-> "), { condition = in_mathzone }),
   s({ trig = "**", snippetType = "autosnippet" }, t("dot "), { condition = in_mathzone }),
 
@@ -323,6 +331,9 @@ cases(
     ),
     { condition = in_mathzone }
   ),
+
+s({ trig = "@p", snippetType = "autosnippet" }, t("partial"), { condition = in_mathzone }),
+
 
 -- Reasoning and Planning
   s({ trig = "entail", wordTrig = false, condition = in_mathzone, snippetType = "autosnippet" },
