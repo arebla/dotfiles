@@ -25,6 +25,7 @@ alias umnt='udisksctl unmount -b' # /dev/sdb1
 alias peli="xrandr --output HDMI-1 --mode 1920x1080 --same-as eDP-1"
 alias enriba="xrandr --output HDMI-1 --mode 1920x1080 --above eDP-1 && nitrogen --restore"
 alias dereita="xrandr --output HDMI-1 --auto --right-of eDP-1 && nitrogen --restore"
+alias esquerda="xrandr --output HDMI-1 --auto --left-of eDP-1 && nitrogen --restore"
 alias audio="alsamixer"
 alias ipwhere="curl ipinfo.io"
 
@@ -46,6 +47,12 @@ alias bsc="cd ~/OneDrive/Física_USC-G1031V01/ && ls -a"
 alias msc="cd ~/OneDrive/MSc/ && ls -a"
 
 alias thm="source ~/.scripts/alacritty-toggle-theme.sh"
+alias arxiv-check="~/.scripts/arxiv_monitor.py"
+alias arxiv-view="~/.scripts/arxiv_view.py"
+
+alias                    \
+  tn="tmux -u -f new"    \
+  ta="tmux -u -f attach"
 
 # =======================
 # FUNCIÓNS ÚTILES
@@ -124,4 +131,13 @@ detach_app() {
     nohup "$@" > /dev/null 2>&1 &
     # Ao executar, imprime na pantalla o número do traballo e o PID, para
     # evitar isto hai que meter o comando «nohup ...» entre parénteses.
+}
+
+# Xestión manual dos ventiladores
+level_fan(){
+    cat /proc/acpi/ibm/fan
+    # Activar permisos de xestión manual
+    sudo modprobe -r thinkpad_acpi && sudo modprobe thinkpad_acpi fan_control=1
+    # Cambiar nivel (0-7 ou full-speed/disengaged)
+    echo "level $1" | sudo tee /proc/acpi/ibm/fan
 }

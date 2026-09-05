@@ -15,6 +15,9 @@ export VISUAL='nvim'
 export BROWSER=firefox
 export MANPAGER='nvim +Man!'
 export LD_LIBRARY_PATH=""
+export GEM_HOME="$(ruby -e 'print Gem.user_dir')"
+export ANKI_SNAPSHOT_DIR="$HOME/.config/anki-snapshot"
+
 
 # =======================
 # ALIASES E FUNCIÓNS
@@ -24,6 +27,7 @@ export LD_LIBRARY_PATH=""
 # terminal.
 
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+[[ -f ~/.bash_aliases.local ]] && . ~/.bash_aliases.local
 
 
 # =======================
@@ -49,7 +53,11 @@ shopt -s histappend
 shopt -s cmdhist
 
 # Engadir ao historial no momento (e non só ao saír do terminal)
-PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
+if [ -n "$PROMPT_COMMAND" ]; then
+    PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
+else
+    PROMPT_COMMAND="history -a"
+fi
 
 
 # =======================
