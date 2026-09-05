@@ -11,12 +11,16 @@ PAC_PKGS=(
     adw-gtk-theme
     alacritty
     alsa-utils
+    android-tools
     android-udev
     anki
+    at-spi2-core
     base-devel
+    bash-completion
     bluez-utils
     brightnessctl
     code
+    cups
     dunst
     exfat-utils
     firefox
@@ -24,6 +28,7 @@ PAC_PKGS=(
     git
     git-filter-repo
     git-lfs
+    gnome-keyring
     gvfs-mtp
     htop
     i3-wm
@@ -32,14 +37,15 @@ PAC_PKGS=(
     imv
     inkscape
     kitty
+    libcanberra
     libreoffice-still-gl
     lightdm
+    lolcat
     lxappearance
     maim
     man
     noto-fonts-cjk
     noto-fonts-emoji
-    yt-dlp
     nvim
     obs-studio
     okular
@@ -57,6 +63,8 @@ PAC_PKGS=(
     redshift
     ripgrep-all
     rofi
+    rsync
+    syncthing
     texlive
     thunar
     tlp
@@ -66,13 +74,13 @@ PAC_PKGS=(
     typst
     unrar
     unzip
-    update-grub
     uv
     vlc
     vlc-plugin-ffmpeg
     xclip
     xdg-desktop-portal
-    xdg-portal-gtk
+    xdg-desktop-portal-gtk
+    yt-dlp
     zathura
     zathura-pdf-mupdf
 )
@@ -86,22 +94,28 @@ DUAL_BOOT_PKGS=(
 # Paquetes do AUR
 AUR_PKGS=(
     cbonsai
+    claude-desktop
+    goldendict-ng
     hunspell-gl
     lightdm-mini-greeter
     neofetch
     nitrogen
     onedrive-abraunegg
+    sharkfin-keyboard-bin
     slides
     spotify
     ttf-aptos
     ttf-cmu-bright
     ttf-ms-fonts
-    zotero
+    update-grub
+    visual-studio-code-bin
+    zotero-bin
 )
 
 # Paquetes de Python
 PY_PKGS=(
     git+https://github.com/tnwei/nbread
+    photogimp
     rofimoji
     spotdl
     tldr
@@ -155,5 +169,5 @@ install_all() {
 # Descomentar para instalar todo:
 #install_all
 # Aínda que mellor:
-#source fresh-install-packages.sh
+#source x11-packages.sh
 #install_arch_official

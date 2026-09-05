@@ -31,12 +31,12 @@ if ! [[ $COMMIT_MSG =~ $CONVENTIONAL_COMMIT_REGEX ]]; then
     echo "  revert:   Reverter un commit anterior."
     echo
     echo "Nota:"
-    echo "  Os commit que introduzan cambios críticos deben ser indicados cun ! antes do :"
+    echo "  Os commit que introduzan cambios críticos deben ser indicados cun «!» antes do «:»."
     echo
     echo "Exemplos:"
     echo "  feat(auth): engadir funcionalidade de login"
     echo "  fix(api)!: resolver problema de timeout"
-    echo "  docs(readme): actualizar instruccións de instalación"
+    echo "  docs(readme): actualizar instrucións de instalación"
     echo
     exit 1
 fi

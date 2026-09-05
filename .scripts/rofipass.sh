@@ -15,10 +15,12 @@ clipmethod="$XDG_SESSION_TYPE"
 
 # Notify-send title
 notify_title="rofipass"
+notify_id=2594
 
 # You can set your EDITOR, or let xdg-open handle it
 # If you use a terminal editor, you can set "st -e nano"
 [ -z "$EDITOR" ] && EDITOR=${EDITOR:-xdg-open}
+export EDITOR
 
 # Terminal to use
 # This is only used to open a terminal to interact with "tomb" to open
@@ -29,7 +31,7 @@ term=${term:-xterm}
 time=${time:-5}
 
 passdir=${PASSWORD_STORE_DIR:-$HOME/.password-store}
-[ ! -d "$passdir" ] && die "no password directory found"
+[ ! -d "$passdir" ] && die "Non se atopou o directorio do «Password Store»."
 
 # Dependencies
 
@@ -53,32 +55,60 @@ kb_edit="Ctrl+y"       # EDIT
 kb_close_tomb="Ctrl-z" # CLOSE TOMB
 kb_open_tomb="Ctrl-o"  # OPEN TOMB
 
+# Icons directoriy
+icon_dir="$HOME/.cache/rofipass/icons"
+icon_color="#f0c674" #ffcc00
+
+generate_icons() {
+  [ -f "$icon_dir/password.png" ] && return
+  mkdir -p "$icon_dir"
+  render() { convert -background none -fill "$icon_color" \
+      -font "SF-Pro-Medium" \
+    -pointsize 96 -gravity center -size 128x128 label:"$1" "$icon_dir/$2.png"; }
+  render "􀟖" password
+  render "􀍖 " email
+  render "􀈒" delete
+  render "􀒋" edit
+  render "􀎡" tomb_open
+  render "􀎥" tomb_close
+}
+
+# 􀈑 􀈒  􀍕  􀍖   􀎡  􀎥  􀟖  􀒋  􀖔  􂅧  􂏫
+
 # === rofipass ===
 
 notify() {
   message="$1"
   urgency="$2"
+  icon="${3:-password}"
   echo "$message" # Message is logged to the tty on purpose
-  #dunstify "$notify_title" "$message"
-  notify-send -u "$urgency" "$notify_title" "$message"
+  #notify-send -a "$notify_title" -u "$urgency" "$notify_title" "$message"
+  dunstify -a "$notify_title" -u "$urgency" -r "$notify_id" \
+    -i "$icon_dir/$icon.png" \
+    "$notify_title" "$message"
 }
 
 notify_wait() {
   message="$1"
+  icon="${2:-password}"
   echo "$message" # Message is logged to the tty on purpose
   # The --expire-time and --wait options serve as a visual clue
   # to show when your clipboard has been cleared.
-  notify-send -u "normal" "$notify_title" "$message" --expire-time="$time"000 --wait
+  #notify-send -a "$notify_title" -u "normal" "$notify_title" "$message" --expire-time="$time"000 --wait
+  dunstify -a "$notify_title" -u normal -r "$notify_id" -t "$time"000 \
+    -i "$icon_dir/$icon.png" \
+    "$notify_title" "$message"
 }
 
 die_notify() {
   message=$1
-  notify "$message" "normal"
+  dunstify -a "$notify_title" -u normal -r "$notify_id" -t "$time"000 \
+    "$notify_title" "$message"
   die "$message"
 }
 
 version() {
-  echo "v1.2.0"
+  echo "v20260905"
 }
 
 usage() {
@@ -124,12 +154,12 @@ copy_email() {
   [ -z "$email" ] && die_notify "$menu non contén un email"
   case "$clipmethod" in
   "x11")
-    xclip "$email" || die_notify "Non se puido copiar o email."
-    notify_wait "Copiouse ao portapapeis. Borrando en $time segundos" "normal"
+    xclip -selection clipboard <<< "$email" || die_notify "Non se puido copiar o email."
+    notify_wait "Email copiado ao portapapeis. Borrando en $time segundos" "email"
     ;;
   "wayland")
     wl-copy "$email" || die_notify "Non se puido copiar o email."
-    notify_wait "Copiouse ao portapapeis. Borrando en $time segundos" "normal"
+    notify_wait "Email copiado ao portapapeis. Borrando en $time segundos" "email"
     ;;
   esac
   clearboard
@@ -194,7 +224,7 @@ tomb_close() {
   if [ "$pass_val" -ne 0 ]; then
     die_notify "failed to close tomb."
   else
-    notify "Your password tomb has been closed" "normal" 0
+    notify "Your password tomb has been closed" "normal" "tomb_close"
   fi
 }
 
@@ -202,10 +232,10 @@ deleteMenu() {
   delask=$(printf "1. Si\n2. Non" | rofi_tiny 2 "Tes a certeza de querer eliminala?")
   val=$?
   [ $val -eq 1 ] && {
-    notify "Cancelled" "low" 0
+    notify "Cancelled" "low" "delete"
     main
   }
-  [ "$delask" = "1. Si" ] && pass rm -f "$menu" && notify "Eliminouse $menu" "normal" 0
+  [ "$delask" = "1. Si" ] && pass rm -f "$menu" && notify "Eliminouse $menu" "normal" "delete"
   main
 }
 
@@ -214,27 +244,28 @@ add_password() {
   addmenu=$(rofi_tiny 0 "Insire o nome do contrasinal:")
   val=$?
   if [ $val -eq 1 ]; then
-    notify "Cancelled" "low" 0
+    notify "Cancelouse engadir contrasinal." "low" "password"
     main
   elif [ $val -eq 0 ]; then
     pass generate "$addmenu" "$length"
     if [ $val -eq 1 ]; then
-      notify FATAL "Non se puido engadir o contrasinal" 0
+      notify "Non se puido engadir o contrasinal" "critical" "password"
       main
     else
-      notify "Engadiuse $addmenu" "normal" 0
+      notify "Engadiuse $addmenu" "normal" "password"
     fi
   fi
   main
 }
 
 edit_password() {
-  pass edit "$menu" || die "$EDITOR: non puido editar $menu"
+  $term -e sh -c 'pass edit "$1"' sh "$menu" || die "$EDITOR: non puido editar $menu"
 }
 
 main() {
   enable_tomb=0
   enable_otp=0
+  generate_icons
 
   if ! command -v "tomb" >/dev/null 2>&1; then
     enable_tomb=1
@@ -272,8 +303,8 @@ $TOMB_HELP"
   12) deleteMenu ;;
   11) # OTP Copy
     [ "$enable_otp" -eq 0 ] && {
-      timeout 3 pass otp -c "$menu" || die_notify "Non se puido copiar o OTP" "normal"
-      notify_wait "Copiouse ao portapapeis. Borrando en $time segundos" "normal"
+      timeout 3 pass otp -c "$menu" || die_notify "Non se puido copiar o OTP"
+      notify_wait "Copiouse ao portapapeis. Borrando en $time segundos" "tomb_open"
       clearboard
     }
     ;;
@@ -284,9 +315,9 @@ $TOMB_HELP"
   16) copy_email ;;
   17) append_otp ;;
   0) # Password Copy
-    pass -c "$menu" || die_notify "Non se puido copiar o contrasinal" "normal"
-    notify_wait "Copiouse ao portapapeis. Borrando en $time segundos" "normal"
-    clearboard
+    pass -c "$menu" || die_notify "Non se puido copiar o contrasinal"
+    notify_wait "Contrasinal copiado ao portapapeis. Borrando en $time segundos" "password"
+#    clearboard
     ;;
   esac
 }
@@ -317,7 +348,7 @@ while getopts ":hvfl:t:T:e:" opt; do
     time="$OPTARG"
     ;;
   ?)
-    die "opción inválida '-$OPTARG'"
+    die "Opción inválida: '-$OPTARG'"
     ;;
   esac
 done
