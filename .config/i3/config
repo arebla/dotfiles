@@ -39,10 +39,6 @@ bindsym $mod+Return exec alacritty
 # Kill focused window
 bindsym $mod+Shift+q kill
 
-# Start rofi menus
-bindsym $mod+d exec --no-startup-id ~/.config/rofi/launcher/launcher.sh
-bindsym $mod+0 exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
-
 # Move across windows
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -65,8 +61,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Split orientation
-bindsym $mod+semicolon split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+semicolon split h;exec notify-send 'Anexar horizontalmente'
+bindsym $mod+v split v;exec notify-send 'Anexar verticalmente'
 #bindsym $mod+b split toggle
 
 # Toggle fullscreen mode for the focused container
@@ -149,6 +145,12 @@ bindsym $mod+Shift+0 exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # MENÚS
 # =======================
 
+# Start rofi menus
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/launcher/launcher.sh
+bindsym $mod+0 exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
+bindsym $mod+period exec rofimoji
+bindsym $mod+Ctrl+p exec rofipass -t kitty -e nvim
+
 bindsym $mod+r mode "Δ"
 mode "Δ" {
         bindsym l resize shrink width 5 px or 5 ppt
@@ -176,7 +178,7 @@ mode "􀬱" {
 #        bindsym m exec alacritty -e alsamixer, mode "default"
 #        bindsym w exec alacritty -e nmtui, mode "default"
         bindsym r exec alacritty -e ranger &, mode "default"
-        bindsym u exec alacritty -e bash -c 'cd ~/OneDrive/Física_USC-G1031V01/ && ranger' &, mode "default"
+        bindsym u exec alacritty -e bash -c 'cd ~/grao/ && ranger' &, mode "default"
         bindsym m exec alacritty -e bash -c 'cd ~/msc/ && ranger' &, mode "default"
         bindsym i exec alacritty -e bash -c 'cd ~/.config/nvim/ && ranger' &, mode "default"
 
@@ -214,17 +216,15 @@ bar {
         background #3b4d4f
         statusline #FDF6E3
         separator #3b4d4f
-
-#                            border  backgr. textF9FAF9
+#
+##                            border  backgr. textF9FAF9
 #        focused_workspace  #3b4d4f #3b4d4f #819fc1
         active_workspace   #353836 #353836 #FDF6E3
         inactive_workspace #3b4d4f #3b4d4f #EEE8D5
         binding_mode       #1d1f21 #1d1f21 #819fc1
         urgent_workspace   #1d1f21 #e46c6d #FDF6E3
         focused_workspace  #1d1f21 #1d1f21 #819fc1
-
     }
-
 }
 
 # Dual monitor config
@@ -240,6 +240,10 @@ exec --no-startup-id $HOME/.scripts/remaps.sh
 
 exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+# Se nitrogen non funciona:
+#exec --no-startup-id $HOME/.config/feh/fehbg
+
+#exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets,pkcs11,ssh
 
 # exec --no-startup-id dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
@@ -281,6 +285,3 @@ client.placeholder      #2e3440 #2e3440 #888888 #2e3440
 client.urgent           #900000 #900000 #ffffff #900000
 client.background       #242424
 #client.focused          #4c566a #2e3440 #888888 #2e3440
-
-bindsym $mod+period exec rofimoji
-bindsym $mod+Ctrl+p exec rofipass -t kitty -e nvim
