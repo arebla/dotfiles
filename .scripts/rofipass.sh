@@ -204,10 +204,13 @@ append_otp() {
 }
 
 clearboard() {
-  case "$clipmethod" in
-  "x11") echo "" | xclip -sel clip ;;
-  "wayland") echo "" | wl-copy ;;
-  esac
+  (
+    sleep "$time"
+    case "$clipmethod" in
+    "x11") echo "" | xclip -sel clip ;;
+    "wayland") echo "" | wl-copy ;;
+    esac
+  ) &
 }
 
 tomb_open() {
@@ -317,7 +320,7 @@ $TOMB_HELP"
   0) # Password Copy
     pass -c "$menu" || die_notify "Non se puido copiar o contrasinal"
     notify_wait "Contrasinal copiado ao portapapeis. Borrando en $time segundos" "password"
-#    clearboard
+    clearboard
     ;;
   esac
 }
