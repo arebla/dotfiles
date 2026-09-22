@@ -10,10 +10,10 @@
 # EXPORTS
 # =======================
 
-export EDITOR='nvim'
-export VISUAL='nvim'
-export BROWSER=firefox
-export MANPAGER='nvim +Man!'
+export EDITOR="nvim"
+export VISUAL="nvim"
+export BROWSER="firefox"
+export MANPAGER="nvim +Man!"
 export LD_LIBRARY_PATH=""
 export GEM_HOME="$(ruby -e 'print Gem.user_dir')"
 export ANKI_SNAPSHOT_DIR="$HOME/.config/anki-snapshot"
@@ -23,7 +23,7 @@ export ANKI_SNAPSHOT_DIR="$HOME/.config/anki-snapshot"
 # ALIASES E FUNCIÓNS
 # =======================
 # Nota: os export hérdanse de procesos pais (iniciar sesión) a fillos, pero os
-# aliases non. Porén, é necesario facerlles source cada vez que se abre un
+# aliases non. Logo, é necesario facerlles source cada vez que se abre un
 # terminal.
 
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
@@ -37,11 +37,11 @@ export ANKI_SNAPSHOT_DIR="$HOME/.config/anki-snapshot"
 # Fontes:
 # - https://excessivelyadequate.com/posts/history.html
 
-# Número de liñas do historial que se len en cada sesión
-export HISTSIZE=1000000
+# Número de liñas do historial que se manteñen en memoria en cada sesión
+export HISTSIZE=50000
 
 # Historial con lonxitude ilimitada
-export HISTFILESIZE=""
+export HISTFILESIZE=-1
 
 # Ignorar duplicados e liñas que comezan cun espazo
 export HISTCONTROL=ignoreboth
