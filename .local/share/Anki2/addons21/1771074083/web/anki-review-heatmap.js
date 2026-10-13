@@ -16,7 +16,7 @@ document.head.appendChild(__vite_style__);
    *  Copyright 2018-2022 Glutanimate
    *  Contributors: gakada, Srdjan Prpa
     */
-  var d3 = window.d3; // GL locale is hardcoded in the accompanying file (d3.min.js)
+  var d3 = window.d3; // GL locale is hardcoded into the accompanying file (d3.min.js)
   var CalHeatMap = function() {
     var self = this;
     this.allowedDataType = ["json", "csv", "tsv", "txt"];
@@ -266,7 +266,7 @@ document.head.appendChild(__vite_style__);
         format: {
           date: "%A, %-e de %B de %Y",
           legend: "%e %b",
-          connector: "a"
+          connector: "o"
         },
         extractUnit: function(d2) {
           return new Date(d2.getFullYear(), d2.getMonth(), d2.getDate()).getTime();
@@ -2232,7 +2232,7 @@ document.head.appendChild(__vite_style__);
             count = count.substring(1);
           }
           if (isEmpty) {
-            tooltip = `<b>Non hai</b> ${Date.now() < cellData.t ? "tarxetas pendentes" : "repasos"} on ${formatData.date}`;
+            tooltip = `${Date.now() < cellData.t ? "<b>Non hai</b> tarxetas pendentes para" : "<b>Non houbo</b> repasos"} o ${formatData.date}`;
           } else {
             const label = Math.abs(cellData.v) == 1 ? "tarxeta" : "tarxetas";
             tooltip = `<b>${count}</b> ${label} <b>${cellData.v < 0 ? "pendentes" : "estudadas"}</b> ${formatData.connector} ${formatData.date}`;
