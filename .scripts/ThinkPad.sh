@@ -33,12 +33,6 @@ xinput set-button-map $trackpoint_id 1 0 3
 # Event id on xinput --list-props and check if applied with
 # libinput quirks list /dev/input/event12
 
-xset r rate 400 50
-
-# Map the caps lock to key to super
-#setxkbmap -option caps:super -variant altgr-intl
-#setxkbmap -option caps:swapescape
-
 # Laptop built-in keyboard (Spanish ISO)
 laptop_id=$(xinput list | grep "AT Translated Set 2 keyboard" | grep -o "id=[0-9]*" | cut -d= -f2)
 #if [ -n "$laptop_id" ]; then

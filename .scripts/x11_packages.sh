@@ -48,7 +48,9 @@ PAC_PKGS=(
     noto-fonts-emoji
     nvim
     obs-studio
+    obsidian
     okular
+    pass
     picom
     pulseaudio
     pulseaudio-alsa
